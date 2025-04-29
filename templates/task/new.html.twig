@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuova Attività{% endblock %}
+
+{% block body %}
+    <h2 class="mb-3">Aggiungi una nuova attività</h2>
+
+    <form method="POST" class="mb-4">
+        <div class="mb-3">
+            <label for="task" class="form-label">Descrizione attività</label>
+            <input type="text" name="task" id="task" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Aggiungi</button>
+    </form>
+
+    <a href="{{ path('task_list') }}" class="btn btn-secondary">Torna alla lista</a>
+{% endblock %}

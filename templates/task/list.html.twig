@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista attività{% endblock %}
+
+{% block body %}
+    <h2 class="mb-3">Lista delle Attività</h2>
+
+    {# ✅ Flash messages accessibili #}
+    {% for label, messages in app.flashes %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show"
+         role="alert" aria-live="polite">
+        {{ messages|last }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Chiudi"></button>
+    </div>
+{% endfor %}
+
+
+    <ul class="list-group mb-4">
+        {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ task }}
+                <a href="{{ path('task_delete', { index: loop.index0 }) }}"
+                   class="btn btn-sm btn-danger"
+                   aria-label="Elimina attività: {{ task }}">
+                   Elimina
+                </a>
+            </li>
+        {% else %}
+            <li class="list-group-item text-muted">Nessuna attività.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('task_new') }}" class="btn btn-primary">Aggiungi nuova attività</a>
+    <a href="{{ path('home') }}" class="btn btn-secondary">Torna alla Home</a>
+{% endblock %}
